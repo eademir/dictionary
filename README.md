@@ -21,6 +21,10 @@ Dictionary is an improvable flutter project to see words' definitions, phonetics
 
 There is no any bug but a glitch. Sometimes, when app is launched or theme is changed, app needs to route another page to implement to new theme fully. Namely, UI may not be able to render some parts on time.
 
+- ### Video
+
+[![App Video](https://img.youtube.com/vi/fqn9NecNjuE/0.jpg)](https://www.youtube.com/watch?v=fqn9NecNjuE)
+
 - ### Implementation Test
 
 Dictionary is tested on web, Android and macOS. App just needs internet permission. Only if app connects internet can it work on any platform except web. API requests is not working for web. I am still looking for this issue.

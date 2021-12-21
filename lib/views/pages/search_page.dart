@@ -18,6 +18,7 @@ class SearchPage extends GetView {
   Widget build(BuildContext context) {
     final SearchX _x = Get.put(SearchX());
     final ResultX _result = Get.put(ResultX());
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 12.0,

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 class SettingsX extends GetxController {
-  MainX _x = Get.find();
+  final MainX _x = Get.find();
 
   final _box = Hive.box('theme');
   ThemeMode? selected;
@@ -12,7 +12,7 @@ class SettingsX extends GetxController {
   Future<void> setTheme(int theme) async {
     selected = ThemeMode.values[theme];
     await _box.put('theme', theme);
-    Future.delayed(const Duration(milliseconds: 185), () {
+    Future.delayed(const Duration(milliseconds: 200), () {
       _x.update();
     });
     update();

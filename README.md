@@ -1,11 +1,11 @@
 # DICTIONARY
 
-Dictionary is an improvable flutter project to see words' definitions, phonetics, examples and more.
+Dictionary is a flutter project to see words' definitions, phonetics, examples and more.
 
 ## Usage
 
 - First of all, you will need an **API key** from [**Oxford Dictionaries**](https://developer.oxforddictionaries.com).
-- You must create a **.env file** in **root directory (/)** of project.
+- You have to create a **.env file** in **root directory (/)** of the project.
 - Add your id, url and key values in it.
 
     __e.g.__
@@ -27,7 +27,7 @@ There is no any bug but a glitch. Sometimes, when app is launched or theme is ch
 
 - ### Implementation Test
 
-Dictionary is tested on web, Android and macOS. App just needs internet permission. Only if app connects internet can it work on any platform except web. API requests is not working for web. I am still looking for this issue.
+Dictionary is tested on web, Android and macOS. App just needs internet permission. Only if app connects internet can it work on any platform except web. API requests is not working for web.
 
 ---
 

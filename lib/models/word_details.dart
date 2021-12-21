@@ -37,8 +37,9 @@ class WordDetails extends Word {
   void setDefinition() {
     _definitions = [];
     for (int i = 0; i < _value['results'][0]['lexicalEntries'].length; i++) {
-      _definitions!
-          .addAll(_value['results'][0]['lexicalEntries'][i]['entries'][0]['senses'][0]['definitions']);
+      _definitions!.addAll(
+        _value['results'][0]['lexicalEntries'][i]['entries'][0]['senses'][0]['definitions'],
+      );
     }
   }
 
@@ -81,4 +82,5 @@ class WordDetails extends Word {
   List? get examples => _examples;
   String? get phonetic => _phonetic;
   String? get formality => _formality;
+  Map<String, dynamic> get value => _value;
 }

@@ -19,6 +19,8 @@ class ClosedComponent extends GetView {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
+            textBaseline: TextBaseline.alphabetic,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
             children: [
               Text(
                 '$word',
@@ -28,8 +30,8 @@ class ClosedComponent extends GetView {
               phonetic == null
                   ? Container()
                   : Text(
-                      'phonetic: $phonetic',
-                      style: Get.textTheme.bodyText1,
+                      '$phonetic',
+                      style: Get.textTheme.subtitle2,
                     ),
             ],
           ),
@@ -41,7 +43,7 @@ class ClosedComponent extends GetView {
                 Expanded(
                   child: definition != null
                       ? Text(
-                          'definition: $definition',
+                          '- $definition',
                           style: Get.textTheme.bodyText1,
                         )
                       : Container(),

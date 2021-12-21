@@ -26,7 +26,7 @@ class SavedWords extends GetView {
             openColor: Get.theme.backgroundColor,
             closedColor: Get.theme.primaryColor,
             openBuilder: (BuildContext context, action) {
-              _resultX.getFromDB(_.savedWords[i]['word']);
+              _resultX.getFromDB(i);
               return const OpenedComponent();
             },
             closedBuilder: (BuildContext context, action) {
@@ -43,7 +43,6 @@ class SavedWords extends GetView {
                     child: IconButton(
                       onPressed: () {
                         _.deleteSavedWord(i);
-                        _.getSavedWords();
                       },
                       icon: LineIcon(
                         LineIcons.trash,

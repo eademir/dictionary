@@ -31,14 +31,7 @@ class ResultX extends GetxController {
       update();
       return;
     }
-    box.put(_details.getWord(), {
-      'word': _details.getWord(),
-      'definitions': definitions,
-      'synonyms': synonyms,
-      'phonetic': phonetic,
-      'examples': examples,
-      'audioUK': audioUK,
-    });
+    box.put(_details.getWord(), _details.value);
     update();
   }
 
@@ -47,15 +40,20 @@ class ResultX extends GetxController {
     update();
   }
 
-  void getFromDB(String inputWord) async {
-    dynamic getter = await box.get(inputWord);
-    word = getter['word'];
-    definitions = getter['definitions'];
-    synonyms = getter['synonyms'];
-    phonetic = getter['phonetic'];
-    examples = getter['examples'];
-    audioUK = getter['audioUK'];
+  void getFromDB(int inputWord) async {
+    Map<String, dynamic> value = Map<String, dynamic>.from(box.getAt(inputWord));
+    _setValues(value);
     update();
+  }
+
+  void _setValues(value) {
+    _details.setValue(value);
+
+    definitions = _details.definitions;
+    synonyms = _details.synonyms;
+    phonetic = _details.phonetic;
+    examples = _details.examples;
+    audioUK = _details.audioUK;
   }
 
   Future<void> responseFunction(String val) async {
@@ -64,32 +62,25 @@ class ResultX extends GetxController {
     _details.setWord(val);
     await DictionaryApi()
         .getWord(
-          endpoint: 'entries',
-          languageCode: 'en-gb',
-          wordID: _details.uri(),
-        )
+      endpoint: 'entries',
+      languageCode: 'en-gb',
+      wordID: _details.uri(),
+    )
         .then(
-          (value) {
-            _details.setValue(value);
-
-            definitions = _details.definitions;
-            synonyms = _details.synonyms;
-            phonetic = _details.phonetic;
-            examples = _details.examples;
-            audioUK = _details.audioUK;
-          },
-        )
-        .whenComplete(() {
-          isOk.value = true;
-          loading.value = false;
-          update();
-        })
-        .timeout(const Duration(seconds: 5), onTimeout: () {})
-        .catchError((e) {
-          isError.value = true;
-          loading.value = false;
-          error = e;
-          return;
-        });
+      (value) {
+        _setValues(value);
+      },
+    ).whenComplete(() {
+      isOk.value = true;
+      loading.value = false;
+      update();
+    }).timeout(const Duration(seconds: 5), onTimeout: () {
+      error = HttpStatus(0); //temporary
+    }).catchError((e) {
+      isError.value = true;
+      loading.value = false;
+      error = e;
+      return;
+    });
   }
 }

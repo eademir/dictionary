@@ -11,8 +11,10 @@ class SavedWordsController extends GetxController {
     for (int i = 0; i < _box.length; i++) {
       savedWords.add({
         'word': _box.getAt(i)['word'],
-        'definition': _box.getAt(i)['definitions'][0],
-        'phonetic': _box.getAt(i)['phonetic']
+        'definition': _box.getAt(i)['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]
+            ['shortDefinitions'][0],
+        'phonetic': _box.getAt(i)['results'][0]['lexicalEntries'][0]['entries'][0]['pronunciations'][0]
+            ['phoneticSpelling'],
       });
     }
     update();
@@ -20,6 +22,7 @@ class SavedWordsController extends GetxController {
 
   void deleteSavedWord(int i) {
     _box.deleteAt(i);
+    getSavedWords();
   }
 
   @override
